@@ -13,6 +13,9 @@ public class ReservationDTO {
     private List<PassengerDTO> passengers;
     private ItineraryDTO itinerary;
 
+    public Long getId() {
+        return id;
+    }
     public List<PassengerDTO> getPassengers() {
         return passengers;
     }

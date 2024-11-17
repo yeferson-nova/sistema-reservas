@@ -1,6 +1,7 @@
 package com.ynova.sistema_reservas.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ynova.sistema_reservas.dto.ReservationDTO;
+import com.ynova.sistema_reservas.exception.MessageExceptions;
 import com.ynova.sistema_reservas.service.ReservationService;
 
 @RestController
@@ -40,12 +42,14 @@ public class ReservationController {
 
     @PostMapping
     public ResponseEntity<ReservationDTO> saveReservation(@RequestBody ReservationDTO reservation) {
+        validateSave(reservation);
         return new ResponseEntity<>(reservation, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ReservationDTO> updateReservation(@RequestBody ReservationDTO reservation,
             @PathVariable Long id) {
+            validateUpdate(reservation);
         ReservationDTO response = service.update(id, reservation);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -54,6 +58,21 @@ public class ReservationController {
     public ResponseEntity<ReservationDTO> updateReservation(@PathVariable Long id) {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private void validateSave(ReservationDTO reservation){
+        if(Objects.nonNull(reservation.getId()) ||
+        Objects.isNull(reservation.getItinerary()) ||
+        Objects.isNull(reservation.getPassengers())){
+            throw new MessageExceptions("Something is not oaky, please check the root nodes");
+        }
+    }
+    private void validateUpdate(ReservationDTO reservation){
+        if(Objects.isNull(reservation.getId()) ||
+        Objects.isNull(reservation.getItinerary()) ||
+        Objects.isNull(reservation.getPassengers())){
+            throw new MessageExceptions("Something is not oaky, please check the root nodes");
+        }
     }
 
 }

@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PassengerDTO {
 
-    private String firsName;
+    private String firstName;
     private String lastName;
     private String typeDcocument;
     private String documentNumber;

@@ -2,11 +2,8 @@ package com.ynova.sistema_reservas.model;
 
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Setter
-@Getter
+
 public class Itinerary {
 
     private Long id;
@@ -25,4 +22,22 @@ public class Itinerary {
     public Prince getPrince(){
         return prince;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Segment> getSegment() {
+        return segment;
+    }
+
+    public void setPrince(Prince prince) {
+        this.prince = prince;
+    }
+
+    
 }

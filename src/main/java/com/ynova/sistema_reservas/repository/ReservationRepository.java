@@ -22,7 +22,7 @@ public class ReservationRepository {
     static {
 
         Passenger passenger = new Passenger();
-        passenger.setFirsName("Andres");
+        passenger.setFirstName("Andres");
         passenger.setLastName("Sacco");
         passenger.setId(1L);
         passenger.setDocumentNumber("DNI");
