@@ -3,7 +3,6 @@ package com.ynova.sistema_reservas;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
 public class SistemaReservasApplication {
 

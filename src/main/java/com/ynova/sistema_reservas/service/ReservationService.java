@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.core.convert.ConversionService;
 
 import com.ynova.sistema_reservas.dto.ReservationDTO;
+import com.ynova.sistema_reservas.enums.APIError;
 import com.ynova.sistema_reservas.exception.MessageExceptions;
 import com.ynova.sistema_reservas.model.Reservation;
 import com.ynova.sistema_reservas.repository.ReservationRepository;
@@ -30,14 +31,14 @@ public class ReservationService {
     public ReservationDTO getReservationById(Long id) {
         Optional<Reservation> result = repository.getReservationById(id);
         if (result.isEmpty()) {
-            throw new MessageExceptions("Not exist");
+            throw new MessageExceptions(APIError.RESERVATION_NOT_FOUND);
         }
         return conversionService.convert(result.get(), ReservationDTO.class);
     }
 
     public ReservationDTO save(ReservationDTO reservation) {
         if (Objects.nonNull(reservation.getId())) {
-            throw new MessageExceptions("Duplicate id");
+            throw new MessageExceptions(APIError.RESERVATION_WITH_SAME_ID);
         }
 
         Reservation transformed = conversionService.convert(reservation, Reservation.class);
@@ -47,7 +48,7 @@ public class ReservationService {
 
     public ReservationDTO update(Long id, ReservationDTO reservation) {
         if (getReservationById(id) == null) {
-            throw new MessageExceptions("Not exist");
+            throw new MessageExceptions(APIError.RESERVATION_NOT_FOUND);
         }
 
         Reservation transformed = conversionService.convert(reservation, Reservation.class);
@@ -57,7 +58,7 @@ public class ReservationService {
 
     public void delete(Long id) {
         if (getReservationById(id) == null) {
-            throw new MessageExceptions("Not exist");
+            throw new MessageExceptions(APIError.RESERVATION_NOT_FOUND);
         }
 
         repository.delete(id);

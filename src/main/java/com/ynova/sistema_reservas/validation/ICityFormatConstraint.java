@@ -10,14 +10,15 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 @Documented
-@Target({ElementType.METHOD, ElementType.FIELD})
+@Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = CityFormatValidator.class)
 public @interface ICityFormatConstraint {
 
-    String message () default "Inavalid format of the city";
+    String message() default "Inavalid format of the city";
 
-    Class <?> [] groups() default {};
+    Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 
 }

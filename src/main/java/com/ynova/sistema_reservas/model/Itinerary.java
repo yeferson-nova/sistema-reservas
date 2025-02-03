@@ -2,8 +2,6 @@ package com.ynova.sistema_reservas.model;
 
 import java.util.List;
 
-
-
 public class Itinerary {
 
     private Long id;
@@ -19,7 +17,7 @@ public class Itinerary {
         this.segment = segment;
     }
 
-    public Prince getPrince(){
+    public Prince getPrince() {
         return prince;
     }
 
@@ -39,5 +37,4 @@ public class Itinerary {
         this.prince = prince;
     }
 
-    
 }
